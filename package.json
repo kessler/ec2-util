@@ -1,0 +1,25 @@
+{
+  "name": "@kessler/ec2-util",
+  "version": "0.0.1",
+  "description": "a bunch of ec2 utilities",
+  "license": "MIT",
+  "author": {
+    "name": "Yaniv Kessler",
+    "email": "yanivk@gmail.com"
+  },
+  "scripts": {},
+  "dependencies": {
+    "debug": "^3.1.0"
+  },
+  "devDependencies": {
+    "aws-sdk": "^2.171.0"
+  },
+  "keywords": [
+    "ec2",
+    "utilities"
+  ],
+  "engines": {
+    "node": ">=7.0.0",
+    "npm": ">=2.0.0"
+  }
+}
