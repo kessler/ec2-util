@@ -7,6 +7,10 @@
     "name": "Yaniv Kessler",
     "email": "yanivk@gmail.com"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kessler/ec2-util"
+  },
   "scripts": {},
   "dependencies": {
     "debug": "^3.1.0"
