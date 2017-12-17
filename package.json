@@ -1,6 +1,6 @@
 {
   "name": "@kessler/ec2-util",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "a bunch of ec2 utilities",
   "license": "MIT",
   "author": {
