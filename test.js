@@ -5,7 +5,7 @@
 const aws = require('aws-sdk')
 const ec2Utils = require('./index')(new aws.EC2())
 
-const imageId = '[ami-id]'
+const imageId = process.env.AWS_IMAGE_ID
 
 //ec2Utils.findInstancesByTags({ Name: 'test-worker' }, console.log)
 ec2Utils.launchInstance({ vpcName: 'main', imageId, tags: { Name: 'test-worker' } }, console.log)

@@ -38,8 +38,8 @@ module.exports = (ec2) => {
 		})
 	}
 
-	function launchInstance({ vpcName, imageId, count = 1, tags = [], instanceType = 't2.nano', dryRun = false }, callback) {
-		
+	function launchInstance({ vpcName, imageId, count = 1, tags = [], instanceType = 't2.nano', dryRun = false, iamProfile }, callback) {
+
 		findVpc(vpcName, onFindVpc)
 
 		function onFindVpc(err, vpc) {
@@ -69,20 +69,27 @@ module.exports = (ec2) => {
 				DryRun: dryRun
 			}
 
+			if (iamProfile) {
+				params.IamInstanceProfile = {
+					Arn: iamProfile.arn,
+					Name: iamProfile.name
+				}
+			}
+
 			debug('launchInstance(): preparing to launch instance: %o', params)
 			ec2.runInstances(params, onRunInstances)
 		}
 
 		function onRunInstances(err, result) {
 			if (err) return callback(err)
-			
+
 			let instances = result.Instances
 			if (!instances) return callback(new Error('something went wrong'))
 			if (instances.length !== 1) return callback(new Error('something went wrong'))
 
 			let instance = instances[0]
 
-			return checkLaunchStatus()			
+			return checkLaunchStatus()
 
 			function checkLaunchStatus() {
 				checkInstanceReady(instance.InstanceId, (err, data) => {
